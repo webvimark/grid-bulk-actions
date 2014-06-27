@@ -27,7 +27,12 @@ class GridBulkActions extends Widget
 	/**
 	 * @var string
 	 */
-	public $okButtonClass = 'btn btn-default';
+	public $okButtonClass = 'btn btn-sm btn-default';
+
+	/**
+	 * @var string
+	 */
+	public $dropDownClass = 'form-control input-sm';
 
 	/**
 	 * @var string

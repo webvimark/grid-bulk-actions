@@ -15,7 +15,7 @@ use yii\web\View;
 		null,
 		$this->context->actions,
 		[
-			'class'=>'form-control',
+			'class'=>$this->context->dropDownClass,
 			'id'=>"{$this->context->gridId}-bulk-actions",
 			'data-ok-button'=>"#{$this->context->gridId}-ok-button",
 			'prompt'=>$this->context->promptText,
