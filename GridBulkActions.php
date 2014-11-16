@@ -97,7 +97,7 @@ class GridBulkActions extends Widget
 		$js = <<<JS
 
 		// Select values in bulk actions list
-		$(document).on('change', '[name="grid-bulk-actions"]', function () {
+		$(document).off('change', '[name="grid-bulk-actions"]').on('change', '[name="grid-bulk-actions"]', function () {
 			var _t = $(this);
 			var okButton = $(_t.data('ok-button'));
 
@@ -110,7 +110,7 @@ class GridBulkActions extends Widget
 		});
 
 		// Clicking OK button
-		$(document).on('click', '.grid-bulk-ok-button', function () {
+		$(document).off('click', '.grid-bulk-ok-button').on('click', '.grid-bulk-ok-button', function () {
 			var _t = $(this);
 			var list = $(_t.data('list'));
 
