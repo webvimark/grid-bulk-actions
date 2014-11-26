@@ -43,12 +43,12 @@ class GridBulkActions extends Widget
 	/**
 	 * @var string
 	 */
-	public $promptText = '--- С выбранными ---';
+	public $promptText;
 
 	/**
 	 * @var string
 	 */
-	public $confirmationText = 'Удалить элементы ?';
+	public $confirmationText;
 
 	/**
 	 * Multilingual support
