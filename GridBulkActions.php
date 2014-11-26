@@ -4,6 +4,7 @@ namespace webvimark\extensions\GridBulkActions;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\helpers\Url;
+use Yii;
 
 class GridBulkActions extends Widget
 {
@@ -50,6 +51,47 @@ class GridBulkActions extends Widget
 	public $confirmationText = 'Удалить элементы ?';
 
 	/**
+	 * Multilingual support
+	 */
+	public function init()
+	{
+		parent::init();
+		$this->registerTranslations();
+
+		$this->promptText = $this->promptText ? $this->promptText : GridBulkActions::t('app', '--- With selected ---');
+		$this->confirmationText = $this->confirmationText ? $this->confirmationText : GridBulkActions::t('app', 'Delete elements?');
+	}
+
+	/**
+	 * Multilingual support
+	 */
+	public function registerTranslations()
+	{
+		$i18n = Yii::$app->i18n;
+		$i18n->translations['widgets/GridBulkActions/*'] = [
+			'class' => 'yii\i18n\PhpMessageSource',
+			'sourceLanguage' => 'en-US',
+			'basePath' => __DIR__ . '/messages',
+			'fileMap' => [
+				'widgets/GridBulkActions/app' => 'app.php',
+			],
+		];
+	}
+
+	/**
+	 * @param string $category
+	 * @param string $message
+	 * @param array  $params
+	 * @param null   $language
+	 *
+	 * @return string
+	 */
+	public static function t($category, $message, $params = [], $language = null)
+	{
+		return Yii::t('widgets/GridBulkActions/' . $category, $message, $params, $language);
+	}
+
+	/**
 	 * @throws \yii\base\InvalidConfigException
 	 * @return string
 	 */
@@ -75,10 +117,10 @@ class GridBulkActions extends Widget
 		if ( ! $this->actions )
 		{
 			$this->actions = [
-				Url::to(['bulk-activate'])=>'Активировать',
-				Url::to(['bulk-deactivate'])=>'Деактивировать',
+				Url::to(['bulk-activate'])=>GridBulkActions::t('app', 'Activate'),
+				Url::to(['bulk-deactivate'])=>GridBulkActions::t('app', 'Deactivate'),
 				'----'=>[
-					Url::to(['bulk-delete'])=>'Удалить',
+					Url::to(['bulk-delete'])=>GridBulkActions::t('app', 'Delete'),
 				],
 			];
 		}
