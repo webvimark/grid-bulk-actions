@@ -56,26 +56,9 @@ class GridBulkActions extends Widget
 	public function init()
 	{
 		parent::init();
-		$this->registerTranslations();
 
 		$this->promptText = $this->promptText ? $this->promptText : GridBulkActions::t('app', '--- With selected ---');
 		$this->confirmationText = $this->confirmationText ? $this->confirmationText : GridBulkActions::t('app', 'Delete elements?');
-	}
-
-	/**
-	 * Multilingual support
-	 */
-	public function registerTranslations()
-	{
-		$i18n = Yii::$app->i18n;
-		$i18n->translations['widgets/GridBulkActions/*'] = [
-			'class' => 'yii\i18n\PhpMessageSource',
-			'sourceLanguage' => 'en-US',
-			'basePath' => __DIR__ . '/messages',
-			'fileMap' => [
-				'widgets/GridBulkActions/app' => 'app.php',
-			],
-		];
 	}
 
 	/**
@@ -88,6 +71,18 @@ class GridBulkActions extends Widget
 	 */
 	public static function t($category, $message, $params = [], $language = null)
 	{
+		if ( !isset(Yii::$app->i18n->translations['widgets/GridBulkActions/*']) )
+		{
+			Yii::$app->i18n->translations['widgets/GridBulkActions/*'] = [
+				'class' => 'yii\i18n\PhpMessageSource',
+				'sourceLanguage' => 'en-US',
+				'basePath' => __DIR__ . '/messages',
+				'fileMap' => [
+					'widgets/GridBulkActions/app' => 'app.php',
+				],
+			];
+		}
+
 		return Yii::t('widgets/GridBulkActions/' . $category, $message, $params, $language);
 	}
 
