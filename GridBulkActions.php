@@ -124,6 +124,8 @@ class GridBulkActions extends Widget
 		{
 			$this->pjaxId = $this->gridId . '-pjax';
 		}
+		$this->gridId = ltrim($this->gridId, '#');
+		$this->pjaxId = ltrim($this->pjaxId, '#');
 	}
 
 	/**
