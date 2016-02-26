@@ -29,7 +29,7 @@ $gridId = uniqid($context->gridId.'-');
 		'id'        => "{$gridId}-ok-button",
 		'data-list' => "#{$gridId}-bulk-actions",
 		'data-pjax' => "#{$context->pjaxId}",
-		'data-grid' => "#{$gridId}",
+		'data-grid' => "#{$context->gridId}",
 	]) ?>
 
 </div>
